@@ -326,3 +326,8 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+
+declare interface MaxWidthWrapperProps {
+  children: ReactNode;
+  className?: string;
+}
