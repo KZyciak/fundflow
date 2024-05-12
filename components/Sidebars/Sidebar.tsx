@@ -9,11 +9,11 @@ export const Sidebar = ({ user }: SiderbarProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="bg-darkGrey text-sm rounded-lg m-2 p-4 hidden sm:block">
+    <section className="m-2 hidden rounded-xl bg-darkGrey p-4 text-sm sm:block lg:w-[270px]">
       <nav className="flex flex-col gap-2">
         <Link
           href="/"
-          className="mb-12 mt-2 mx-auto cursor-pointer items-center gap-4 flex"
+          className="mx-auto mb-12 mt-2 flex cursor-pointer items-center gap-4"
         >
           <Image
             src="/icons/logo.svg"
@@ -22,7 +22,7 @@ export const Sidebar = ({ user }: SiderbarProps) => {
             height={34}
             className="size-10"
           />
-          <h1 className="hidden lg:block text-lg">FundFlow</h1>
+          <h1 className="hidden text-lg lg:block">FundFlow</h1>
         </Link>
         {sidebarLinks.map((item) => {
           const isActive =
@@ -32,10 +32,10 @@ export const Sidebar = ({ user }: SiderbarProps) => {
               key={item.label}
               href={item.route}
               className={cn(
-                "cursor-pointer rounded-lg p-3 w-full text-center gap-1 hover:bg-highlightGrey",
+                "flex w-full cursor-pointer gap-1 rounded-lg p-3 text-center hover:bg-highlightGrey",
                 {
-                  "bg-lightBlue font-semibold hover:bg-lightBlue": isActive,
-                }
+                  "bg-blue-600 font-semibold hover:bg-blue-500": isActive,
+                },
               )}
             >
               <div className="flex items-center justify-center gap-2">

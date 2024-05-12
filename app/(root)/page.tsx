@@ -1,11 +1,16 @@
 import { HeaderBox } from "@/components/HomePage/HeaderBox";
 import { MaxWidthWrapper } from "@/components/HomePage/MaxWidthWrapper";
 import { TotalBalanceBox } from "@/components/HomePage/TotalBalanceBox";
+import { RightSidebar } from "@/components/Sidebars/RightSidebar";
 
 const Home = () => {
-  const loggedIn = { firstName: "Kacper" };
+  const loggedIn = {
+    firstName: "Kacper",
+    lastName: "Wozignój",
+    email: "kacper.wozignoj@gmail.com",
+  };
   return (
-    <section className="text-zinc-50">
+    <section className="flex h-screen">
       <MaxWidthWrapper>
         <HeaderBox
           type="greeting"
@@ -18,7 +23,10 @@ const Home = () => {
           totalBanks={1}
           totalCurrentBalance={1250.5}
         />
+
+        <div>RECENT TRANSACTIONS</div>
       </MaxWidthWrapper>
+      <RightSidebar user={loggedIn} transactions={[]} banks={[{}, {}]} />
     </section>
   );
 };

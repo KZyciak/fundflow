@@ -38,7 +38,7 @@ export const MobileNav = ({ user }: MobileNavProps) => {
   };
 
   return (
-    <section className="h-screen absolute w-full right-0 top-0 z-40">
+    <section className="absolute right-0 top-0 z-40 h-screen w-full">
       <MenuButton isActive={isActive} setIsActive={toggleMenu} />
       {isActive && (
         <div
@@ -54,12 +54,12 @@ export const MobileNav = ({ user }: MobileNavProps) => {
               initial="initial"
               animate="enter"
               exit="exit"
-              className="w-[55%] z-40 h-screen absolute right-0 top-0 bg-black p-4"
+              className="absolute right-0 top-0 z-40 h-screen w-[55%] bg-black p-4"
             >
-              <nav className="flex flex-col gap-2 items-center">
+              <nav className="flex flex-col items-center gap-2">
                 <Link
                   href="/"
-                  className="mb-12 mt-2 mx-auto cursor-pointer items-center gap-4 flex"
+                  className="mx-auto mb-12 mt-2 flex cursor-pointer items-center gap-4"
                 >
                   <h1 className="text-lg">FundFlow</h1>
                 </Link>
@@ -72,11 +72,11 @@ export const MobileNav = ({ user }: MobileNavProps) => {
                       key={item.label}
                       href={item.route}
                       className={cn(
-                        "cursor-pointer rounded-lg p-3 w-full flex hover:bg-highlightGrey",
+                        "flex w-full cursor-pointer rounded-lg p-3 hover:bg-highlightGrey",
                         {
-                          "bg-lightBlue font-semibold hover:bg-lightBlue":
+                          "bg-blue-600 font-semibold hover:bg-blue-500":
                             isActive,
-                        }
+                        },
                       )}
                     >
                       <div className="flex items-center justify-center gap-2">

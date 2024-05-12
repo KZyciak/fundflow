@@ -7,3 +7,26 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.right-sidebar-gradient {
+  background: rgb(18, 18, 18);
+  background: linear-gradient(
+    22deg,
+    rgba(18, 18, 18, 0.9038209033613446) 0%,
+    rgba(63, 136, 197, 1) 100%
+  );
+}
+
+@layer components {
+  .bank-card {
+    @apply relative flex h-[180px] w-full max-w-[300px] justify-between rounded-[20px] border border-white bg-gradient-to-r from-blue-500 to-blue-600 backdrop-blur-[6px];
+  }
+
+  .bank-card_content {
+    @apply relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-gradient-to-r from-blue-500 to-blue-600 px-5 pb-4 pt-5;
+  }
+
+  .bank-card_icon {
+    @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-gradient-to-r from-blue-500 to-blue-600 bg-cover bg-center bg-no-repeat py-5 pr-5;
+  }
+}
