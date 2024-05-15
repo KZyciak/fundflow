@@ -8,6 +8,7 @@ import { MenuButton } from "./button/MenuButton";
 import { useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { Footer } from "./Footer";
 
 export const MobileNav = ({ user }: MobileNavProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -93,6 +94,7 @@ export const MobileNav = ({ user }: MobileNavProps) => {
                   );
                 })}
               </nav>
+              <Footer user={user} type="mobile" />
             </motion.div>
           </div>
         )}

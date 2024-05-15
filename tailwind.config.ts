@@ -16,6 +16,10 @@ module.exports = {
         mainBlue: "#B1DDF1",
         mainYellow: "#FCCB06",
       },
+      fontFamily: {
+        inter: "var(--font-inter)",
+        "ibm-plex-serif": "var(--font-ibm-plex-serif)",
+      },
     },
   },
 };

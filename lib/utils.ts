@@ -2,6 +2,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -39,22 +40,22 @@ export const formatDateTime = (dateString: Date) => {
 
   const formattedDateTime: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateTimeOptions
+    dateTimeOptions,
   );
 
   const formattedDateDay: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateDayOptions
+    dateDayOptions,
   );
 
   const formattedDate: string = new Date(dateString).toLocaleString(
     "en-US",
-    dateOptions
+    dateOptions,
   );
 
   const formattedTime: string = new Date(dateString).toLocaleString(
     "en-US",
-    timeOptions
+    timeOptions,
   );
 
   return {
@@ -97,7 +98,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
       url: window.location.pathname,
       query: currentUrl,
     },
-    { skipNull: true }
+    { skipNull: true },
   );
 }
 
@@ -130,7 +131,7 @@ export function getAccountTypeColors(type: AccountTypes) {
 }
 
 export function countTransactionCategories(
-  transactions: Transaction[]
+  transactions: Transaction[],
 ): CategoryCount[] {
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
@@ -159,7 +160,7 @@ export function countTransactionCategories(
       name: category,
       count: categoryCounts[category],
       totalCount,
-    })
+    }),
   );
 
   // Sort the aggregatedCategories array by count in descending order
@@ -193,3 +194,78 @@ export const getTransactionStatus = (date: Date) => {
 
   return date > twoDaysAgo ? "Processing" : "Success";
 };
+
+const passwordValidation = new RegExp(
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+);
+
+export const AuthFormSchema = (type: string) =>
+  z.object({
+    //sign up
+    firstName:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(2, { message: "First name must be at least 2 characters" }),
+    lastName:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(2, { message: "Last name must be at least 2 characters" }),
+    address:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(5, { message: "Address must be at least 5 characters" })
+            .max(50, { message: "Address must be at most 50 characters" }),
+    city:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(3, { message: "City must be at least 3 characters" })
+            .max(50, { message: "City must be at most 50 characters" }),
+    state:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(2, { message: "State must be at least 2 characters" })
+            .max(50, { message: "State must be at most 50 characters" }),
+    postalCode:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(5, { message: "Postal Code must be at least 5 characters" })
+            .max(6, {
+              message:
+                "Postal code must be at most 6 characters of format XX-XXX",
+            }),
+    dateOfBirth:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(8, { message: "Date must be at least 8 characters" })
+            .max(10, { message: "Date must be at most 10 characters" }),
+    ssn:
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .min(4, { message: "SSN number must be equal 4 characters" })
+            .max(4, { message: "SSN number must be equal 4 characters" }),
+    //both
+    email: z.string().email({ message: "Invalid e-mail address" }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" })
+      .regex(passwordValidation, {
+        message:
+          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      }),
+  });

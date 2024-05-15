@@ -1,15 +1,17 @@
 "use client";
-import { sidebarLinks } from "@/constants";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
+import { Footer } from "./Footer";
 
 export const Sidebar = ({ user }: SiderbarProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="m-2 hidden rounded-xl bg-darkGrey p-4 text-sm sm:block lg:w-[270px]">
+    <section className="m-2 hidden flex-col justify-between rounded-xl bg-darkGrey p-4 text-sm sm:flex lg:w-[290px]">
       <nav className="flex flex-col gap-2">
         <Link
           href="/"
@@ -22,7 +24,9 @@ export const Sidebar = ({ user }: SiderbarProps) => {
             height={34}
             className="size-10"
           />
-          <h1 className="hidden text-lg lg:block">FundFlow</h1>
+          <h1 className="hidden font-ibm-plex-serif text-xl lg:block">
+            FundFlow
+          </h1>
         </Link>
         {sidebarLinks.map((item) => {
           const isActive =
@@ -52,6 +56,7 @@ export const Sidebar = ({ user }: SiderbarProps) => {
           );
         })}
       </nav>
+      <Footer user={user} />
     </section>
   );
 };

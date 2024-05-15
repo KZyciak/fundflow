@@ -15,10 +15,8 @@ export const BankCard = ({
       >
         <div className="bank-card_content">
           <div>
-            <h1 className="text-lg font-semibold text-white">
-              {account.name}Kacper Życiak
-            </h1>
-            <p className="font-ibm-plex-serif font-black text-white">
+            <h1 className="text-lg font-semibold text-white">{userName}</h1>
+            <p className="font-semibold text-white">
               {formatAmount(account.currentBalance)}1200
             </p>
           </div>
