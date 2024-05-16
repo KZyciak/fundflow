@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { AuthFormSchema } from "@/lib/utils";
 import { FormInput } from "@/components/Auth/FormInput";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import { PlaidLink } from "../plaid/PlaidLink";
 
 export const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -39,7 +40,20 @@ export const AuthForm = ({ type }: { type: string }) => {
 
     try {
       if (type === "sign-up") {
-        const newUser = await signUp(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        };
+
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
       if (type === "sign-in") {
@@ -83,7 +97,9 @@ export const AuthForm = ({ type }: { type: string }) => {
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">{/* Plaid Link component */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} />
+        </div>
       ) : (
         <>
           <form
@@ -91,8 +107,8 @@ export const AuthForm = ({ type }: { type: string }) => {
             className="flex flex-col gap-4"
           >
             {type === "sign-up" ? (
-              <div className="gap-5 xl:flex">
-                <div className="">
+              <div className="gap-10 xl:flex">
+                <div className="flex flex-col gap-4">
                   <div className="flex gap-5">
                     <FormInput
                       control={form.control}
@@ -146,7 +162,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="flex flex-col gap-4">
                   <div className="flex gap-4">
                     <FormInput
                       control={form.control}
