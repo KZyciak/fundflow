@@ -12,7 +12,7 @@ export const Footer = ({ user, type = "desktop" }: FooterProps) => {
   return (
     <footer className="flex items-center justify-between">
       <div>
-        <h1 className="truncate font-normal">{user.name}</h1>
+        <h1 className="truncate font-normal">{user.firstName}</h1>
         <p className="text-xs text-textGrey">{user.email}</p>
       </div>
       <div onClick={handleLogOut} className="cursor-pointer">

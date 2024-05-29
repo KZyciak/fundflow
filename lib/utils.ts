@@ -231,10 +231,8 @@ export const AuthFormSchema = (type: string) =>
     state:
       type === "sign-in"
         ? z.string().optional()
-        : z
-            .string()
-            .min(2, { message: "State must be at least 2 characters" })
-            .max(50, { message: "State must be at most 50 characters" }),
+        : z.string().max(2, { message: "State must be at least 2 characters" }),
+
     postalCode:
       type === "sign-in"
         ? z.string().optional()

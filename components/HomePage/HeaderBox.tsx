@@ -5,11 +5,11 @@ export const HeaderBox = ({
   user,
 }: HeaderBoxProps) => {
   return (
-    <div className="w-full mt-5 mb-8">
-      <h1 className="text-3xl font-semibold mb-1">
+    <div className="mb-8 mt-5 w-full">
+      <h1 className="mb-1 text-3xl font-semibold">
         {title}
         {type === "greeting" && (
-          <span className="text-tropicalIndigo">&nbsp;{user}</span>
+          <span className="text-blue-500">&nbsp;{user}</span>
         )}
       </h1>
       <p className="text-textGrey">{subtext}</p>

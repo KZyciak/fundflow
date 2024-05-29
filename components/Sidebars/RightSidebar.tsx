@@ -15,11 +15,13 @@ export const RightSidebar = ({
       <div id="profile" className="relative flex px-5 max-xl:justify-center">
         <div className="absolute -top-8 flex size-14 items-center justify-center rounded-full border-4 border-lightGrey bg-grey p-2">
           <span className="text-2xl font-bold text-indigo-500">
-            {user.name[0]}
+            {user.firstName[0]}
           </span>
         </div>
         <div className="flex flex-col pt-8">
-          <h1 className="text-2xl font-semibold text-textLight">{user.name}</h1>
+          <h1 className="text-2xl font-semibold text-textLight">
+            {`${user.firstName} ${user.lastName}`}
+          </h1>
           <p className="text-sm text-textGrey">{user.email}</p>
         </div>
       </div>
@@ -40,7 +42,7 @@ export const RightSidebar = ({
               <BankCard
                 key={banks[0].$id}
                 account={banks[0]}
-                userName={user.name}
+                userName={`${user.firstName} ${user.lastName}`}
                 showBalance={false}
               />
             </div>
@@ -49,7 +51,7 @@ export const RightSidebar = ({
                 <BankCard
                   key={banks[1].$id}
                   account={banks[1]}
-                  userName={user.name}
+                  userName={`${user.firstName} ${user.lastName}`}
                   showBalance={false}
                 />
               </div>

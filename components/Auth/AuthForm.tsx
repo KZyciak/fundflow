@@ -72,6 +72,8 @@ export const AuthForm = ({ type }: { type: string }) => {
     }
   };
 
+  console.log(user);
+
   return (
     <section className="rounded-2xl bg-darkGrey p-4 md:p-8">
       <header className="flex flex-col gap-5 md:gap-8">
