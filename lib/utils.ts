@@ -199,7 +199,7 @@ const passwordValidation = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
 );
 
-export const AuthFormSchema = (type: string) =>
+export const AuthFormSchema = (type?: string) =>
   z.object({
     //sign up
     firstName:
@@ -266,4 +266,13 @@ export const AuthFormSchema = (type: string) =>
         message:
           "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
       }),
+  });
+
+export const PaymentTransferFormSchema = () =>
+  z.object({
+    email: z.string().email("Invalid email address"),
+    name: z.string().min(4, "Transfer note is too short"),
+    amount: z.string().min(4, "Amount is too short"),
+    senderBank: z.string().min(4, "Please select a valid bank account"),
+    shareableId: z.string().min(8, "Please select a valid sharable Id"),
   });

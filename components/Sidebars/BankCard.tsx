@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatAmount } from "@/lib/utils";
+import Copy from "./Copy";
 
 export const BankCard = ({
   account,
@@ -17,7 +18,7 @@ export const BankCard = ({
           <div>
             <h1 className="text-lg font-semibold text-white">{userName}</h1>
             <p className="font-semibold text-white">
-              {formatAmount(account.currentBalance)}1200
+              {formatAmount(account.currentBalance)}
             </p>
           </div>
 
@@ -50,6 +51,8 @@ export const BankCard = ({
           className="absolute left-0 top-0"
         />
       </Link>
+
+      {showBalance && <Copy title={account?.shareableId} />}
     </div>
   );
 };

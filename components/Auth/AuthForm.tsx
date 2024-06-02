@@ -18,6 +18,7 @@ export const AuthForm = ({ type }: { type: string }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = AuthFormSchema(type);
+  type InputFormSchema = z.infer<typeof formSchema>;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -112,7 +113,7 @@ export const AuthForm = ({ type }: { type: string }) => {
               <div className="gap-10 xl:flex">
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-5">
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="firstName"
                       label="First Name"
@@ -120,7 +121,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       placeholder="Enter your first name"
                       error={form.formState.errors.firstName}
                     />
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="lastName"
                       label="Last Name"
@@ -129,7 +130,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       error={form.formState.errors.lastName}
                     />
                   </div>
-                  <FormInput
+                  <FormInput<InputFormSchema>
                     control={form.control}
                     name="address"
                     label="Address"
@@ -137,7 +138,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     placeholder="Enter your address"
                     error={form.formState.errors.address}
                   />
-                  <FormInput
+                  <FormInput<InputFormSchema>
                     control={form.control}
                     name="city"
                     label="City"
@@ -146,7 +147,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     error={form.formState.errors.city}
                   />
                   <div className="flex gap-4">
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="state"
                       label="State"
@@ -154,7 +155,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       placeholder="Example: Dolnośląskie"
                       error={form.formState.errors.state}
                     />
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="postalCode"
                       label="Postal Code"
@@ -166,7 +167,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-4">
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="dateOfBirth"
                       label="Date of Birth"
@@ -174,7 +175,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       placeholder="DD-MM-YYYY"
                       error={form.formState.errors.dateOfBirth}
                     />
-                    <FormInput
+                    <FormInput<InputFormSchema>
                       control={form.control}
                       name="ssn"
                       label="SSN"
@@ -183,7 +184,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       error={form.formState.errors.ssn}
                     />
                   </div>
-                  <FormInput
+                  <FormInput<InputFormSchema>
                     control={form.control}
                     label="Email"
                     type="email"
@@ -192,7 +193,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     error={form.formState.errors.email}
                   />
 
-                  <FormInput
+                  <FormInput<InputFormSchema>
                     control={form.control}
                     label="Password"
                     type="password"
@@ -211,7 +212,7 @@ export const AuthForm = ({ type }: { type: string }) => {
               </div>
             ) : (
               <div className="flex w-[500px] flex-col gap-4">
-                <FormInput
+                <FormInput<InputFormSchema>
                   control={form.control}
                   label="Email"
                   type="email"
@@ -220,7 +221,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                   error={form.formState.errors.email}
                 />
 
-                <FormInput
+                <FormInput<InputFormSchema>
                   control={form.control}
                   label="Password"
                   type="password"

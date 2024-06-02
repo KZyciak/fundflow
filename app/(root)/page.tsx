@@ -4,21 +4,20 @@ import { TotalBalanceBox } from "@/components/HomePage/TotalBalanceBox";
 import { RightSidebar } from "@/components/Sidebars/RightSidebar";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { RecentTransactions } from "@/components/HomePage/RecentTransactions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
-  const loggedIn = await getLoggedInUser();
+  const currentPage = Number(page as string) || 1;
 
+  const loggedIn = await getLoggedInUser();
   const accounts = await getAccounts({ userId: loggedIn.$id });
 
   if (!accounts) return;
 
   const accountsData = accounts?.data;
-
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
   const account = await getAccount({ appwriteItemId });
-
-  console.log({ account, accountsData });
 
   return (
     <section className="flex h-screen">
@@ -34,7 +33,14 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           totalBanks={accounts?.totalBanks}
           totalCurrentBalance={accounts?.totalCurrentBalance}
         />
-        <div>RECENT TRANSACTIONS</div>
+        <div>
+          <RecentTransactions
+            accounts={accountsData}
+            transactions={account?.transactions}
+            appwriteItemId={appwriteItemId}
+            page={currentPage}
+          />
+        </div>
       </MaxWidthWrapper>
       <RightSidebar
         user={loggedIn}

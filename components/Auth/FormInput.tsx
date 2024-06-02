@@ -1,28 +1,30 @@
 "use client";
-import { Control, Controller, FieldError, FieldPath } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldError,
+  FieldPath,
+  FieldValues,
+} from "react-hook-form";
 import { useState } from "react";
-import { AuthFormSchema } from "@/lib/utils";
-import { z } from "zod";
 
-const formSchema = AuthFormSchema("sign-up");
-
-declare type FormInputProps = {
-  control: Control<z.infer<typeof formSchema>>;
-  name: FieldPath<z.infer<typeof formSchema>>;
+declare type FormInputProps<T extends FieldValues> = {
+  control: Control<T>;
+  name: FieldPath<T>;
   label: string;
-  type: string;
+  type?: string;
   placeholder: string;
-  error: FieldError | undefined;
+  error?: FieldError | undefined;
 };
 
-export const FormInput = ({
+export const FormInput = <T extends FieldValues>({
   name,
   control,
   type,
   placeholder,
   label,
   error,
-}: FormInputProps) => {
+}: FormInputProps<T>) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <>
@@ -41,7 +43,7 @@ export const FormInput = ({
             <input
               type={type}
               placeholder={placeholder}
-              className="rounded-xl  bg-highlightGrey px-4 py-[10px] ring-1 ring-transparent transition-colors duration-300 ease-in-out placeholder:text-lightGrey hover:bg-grey focus:bg-grey focus:outline-none focus:ring-blue-600"
+              className="rounded-xl bg-highlightGrey px-4 py-[10px] ring-1 ring-transparent transition-colors duration-300 ease-in-out placeholder:text-lightGrey hover:bg-grey focus:bg-grey focus:outline-none focus:ring-blue-600"
               {...field}
               onFocus={() => setIsActive(true)}
               onBlur={() => setIsActive(false)}

@@ -46,9 +46,19 @@ export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   return (
     <div>
-      <Button onClick={() => open()} type="button" disabled={!ready}>
-        Connect Bank Account
-      </Button>
+      {variant === "primary" ? (
+        <Button onClick={() => open()} type="button" disabled={!ready}>
+          Connect Bank Account
+        </Button>
+      ) : variant === "ghost" ? (
+        <Button onClick={() => open()} type="button" disabled={!ready}>
+          Connect Bank Account
+        </Button>
+      ) : (
+        <Button onClick={() => open()} type="button" disabled={!ready}>
+          Add another account
+        </Button>
+      )}
     </div>
   );
 };
