@@ -1,4 +1,4 @@
-import { HeaderBox } from "@/components/home-page/HeaderBox";
+import { HeaderBox } from "@/components/homePage/HeaderBox";
 import { BankCard } from "../../../components/sidebars/BankCard";
 import { getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";

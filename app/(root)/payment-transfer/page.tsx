@@ -1,4 +1,4 @@
-import { HeaderBox } from "@/components/home-page/HeaderBox";
+import { HeaderBox } from "@/components/homePage/HeaderBox";
 import PaymentTransferForm from "@/components/transactions/PaymentTransferForm";
 import { getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -13,7 +13,7 @@ const Transfer = async () => {
 
   const accountsData = accounts?.data;
   return (
-    <section className="bg-elementBackgroundColor border-borderColor m-6 rounded-lg border-[1px] p-6 md:m-8">
+    <section className="m-6 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6 md:m-8">
       <HeaderBox
         title="Payment Transfer"
         subtext="Please provide any specific details or notes related to the payment transfer"

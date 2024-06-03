@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BankTabItem } from "../home-page/BankTabItem";
-import BankInfo from "../home-page/BankInfo";
+import { BankTabItem } from "../homePage/BankTabItem";
+import BankInfo from "../homePage/BankInfo";
 import { TransactionsTable } from "./TransactionsTable";
 
 export const RecentTransactions = ({
@@ -19,7 +19,7 @@ export const RecentTransactions = ({
         {variant === "full" && (
           <Link
             href={`/transaction-history/?id=${appwriteItemId}`}
-            className="text-grayColor hover:text-textWhiteColor border-borderColor hover:bg-activeElementBackgroundColor hover:border-lightBorderColor rounded-md border-[1px] px-2 py-1 text-sm duration-300"
+            className="rounded-md border-[1px] border-borderColor px-2 py-1 text-sm text-grayColor duration-300 hover:border-lightBorderColor hover:bg-activeElementBackgroundColor hover:text-textWhiteColor"
           >
             View all
           </Link>

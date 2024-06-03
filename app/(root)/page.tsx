@@ -1,5 +1,5 @@
-import { HeaderBox } from "@/components/home-page/HeaderBox";
-import { TotalBalanceBox } from "@/components/home-page/TotalBalanceBox";
+import { HeaderBox } from "@/components/homePage/HeaderBox";
+import { TotalBalanceBox } from "@/components/homePage/TotalBalanceBox";
 import { RightSidebar } from "@/components/sidebars/RightSidebar";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -21,7 +21,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   return (
     <section className="flex h-screen overflow-hidden">
       <div className="mx-auto h-full w-full p-6 md:p-8">
-        <div className="bg-elementBackgroundColor border-borderColor flex flex-col gap-4 rounded-lg border-[1px] p-6">
+        <div className="flex flex-col gap-4 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
           <HeaderBox
             type="greeting"
             title="Welcome"
@@ -34,7 +34,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
             totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </div>
-        <div className="bg-elementBackgroundColor border-borderColor mt-8 rounded-lg border-[1px] p-6">
+        <div className="mt-8 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
           <RecentTransactions
             variant="full"
             accounts={accountsData}

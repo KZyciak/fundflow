@@ -1,4 +1,4 @@
-import { HeaderBox } from "@/components/home-page/HeaderBox";
+import { HeaderBox } from "@/components/homePage/HeaderBox";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { RecentTransactions } from "@/components/transactions/RecentTransactions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -19,7 +19,7 @@ const TransactionHistory = async ({
 
   const account = await getAccount({ appwriteItemId });
   return (
-    <section className="bg-elementBackgroundColor border-borderColor m-6 rounded-lg border-[1px] p-6 md:m-8">
+    <section className="m-6 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6 md:m-8">
       <div className="pb-6">
         <HeaderBox
           title="Transaction History"
