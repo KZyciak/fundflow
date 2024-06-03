@@ -1,10 +1,11 @@
 import Image from "next/image";
 
-import { Sidebar } from "@/components/Sidebars/Sidebar";
-import { MobileNav } from "@/components/Sidebars/MobileNav";
+import { LeftSidebar } from "@/components/sidebars/LeftSidebar";
+import { MobileNav } from "@/components/sidebars/MobileNav";
 import Logo from "@/public/icons/logo.svg";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function RootLayout({
   children,
@@ -17,11 +18,16 @@ export default async function RootLayout({
     redirect("/sign-in");
   }
   return (
-    <main className="flex h-screen w-full font-inter">
-      <Sidebar user={loggedIn} />
-      <div className="flex size-full flex-col ">
-        <div className="flex items-center justify-between p-4 sm:hidden">
-          <Image src={Logo} alt="Logo" width={30} height={30} />
+    <main className="flex h-screen w-full font-inter text-textWhiteColor">
+      <LeftSidebar user={loggedIn} />
+      <div className="flex size-full flex-col">
+        <div className="flex items-center justify-between p-8 lg:hidden">
+          <Link href="/" className="flex items-center gap-5">
+            <Image src={Logo} alt="Logo" width={40} height={40} />
+            <h1 className="font-mono text-2xl lg:block">
+              Fund<span className="text-AccentLimeColor">Flow</span>
+            </h1>
+          </Link>
           <div>
             <MobileNav user={loggedIn} />
           </div>

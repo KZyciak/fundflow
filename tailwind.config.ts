@@ -5,16 +5,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: "#000000",
-        darkGrey: "#121212",
-        grey: "#232323",
-        highlightGrey: "#1c1c1c",
-        lightGrey: "#5A5959",
-        textGrey: "#A7A7A7",
-        textLight: "#FFFFFF",
-        lightRed: "#E65F5C",
-        mainBlue: "#B1DDF1",
-        mainYellow: "#FCCB06",
+        backgroundColor: "#161616",
+        elementBackgroundColor: "#1C1C1C",
+        borderColor: "#242424",
+        lightBorderColor: "#393939",
+        activeElementBackgroundColor: "#2C2C2C",
+        grayColor: "#858585",
+        textWhiteColor: "#F6F6F6",
+        textBlackColor: "#161616",
+        AccentLimeColor: "#B6FF1B",
       },
       fontFamily: {
         inter: "var(--font-inter)",

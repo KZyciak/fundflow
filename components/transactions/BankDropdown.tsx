@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 import { formUrlQuery, formatAmount } from "@/lib/utils";
 
+import { AiFillDollarCircle } from "react-icons/ai";
+
 export const BankDropdown = ({
   accounts = [],
   setValue,
@@ -44,36 +46,36 @@ export const BankDropdown = ({
       defaultValue={selected.id}
       onValueChange={(value) => handleBankChange(value)}
     >
-      <SelectTrigger
-        className={`flex w-full gap-3 md:w-[300px] ${otherStyles}`}
-      >
-        <Image
-          src="icons/credit-card.svg"
-          width={20}
-          height={20}
-          alt="account"
-        />
-        <p className="line-clamp-1 w-full text-left">{selected.name}</p>
+      <SelectTrigger className="flex items-center justify-between border-lightBorderColor bg-activeElementBackgroundColor ">
+        <div className="flex items-center gap-3">
+          <AiFillDollarCircle />
+          <div className="flex flex-col items-center justify-start gap-1">
+            <p className="text-[15px] font-semibold text-AccentLimeColor">
+              {selected.name}
+            </p>
+            <p className="w-full text-start">
+              {formatAmount(selected.currentBalance)}
+            </p>
+          </div>
+        </div>
       </SelectTrigger>
       <SelectContent
-        className={`w-full md:w-[300px] ${otherStyles}`}
         align="end"
+        className="border-lightBorderColor bg-activeElementBackgroundColor text-textWhiteColor"
       >
         <SelectGroup>
-          <SelectLabel className="py-2 font-normal text-gray-500">
+          <SelectLabel className="text-grayColor">
             Select a bank to display
           </SelectLabel>
           {accounts.map((account: Account) => (
             <SelectItem
               key={account.id}
               value={account.appwriteItemId}
-              className="cursor-pointer border-t"
+              className="focus:bg-lightBorderColor focus:text-textWhiteColor"
             >
-              <div className="flex flex-col ">
-                <p className="text-16 font-medium">{account.name}</p>
-                <p className="text-14 font-medium text-blue-600">
-                  {formatAmount(account.currentBalance)}
-                </p>
+              <div>
+                <p>{account.name}</p>
+                <p>{formatAmount(account.currentBalance)}</p>
               </div>
             </SelectItem>
           ))}

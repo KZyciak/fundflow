@@ -7,10 +7,10 @@ type Props = {
 
 export const MenuButton = ({ isActive, setIsActive }: Props) => {
   return (
-    <div className="text-darkest fixed right-2 top-2 z-50">
+    <div className="absolute right-5 top-5 z-50">
       <div
         onClick={setIsActive}
-        className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full bg-darkGrey duration-300 hover:bg-grey"
+        className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full duration-300"
       >
         <div
           className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}

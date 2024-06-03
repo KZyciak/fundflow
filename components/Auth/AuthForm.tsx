@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { AuthFormSchema } from "@/lib/utils";
-import { FormInput } from "@/components/Auth/FormInput";
+import { FormInput } from "@/components/auth/FormInput";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import { PlaidLink } from "../plaid/PlaidLink";
 
@@ -76,22 +76,24 @@ export const AuthForm = ({ type }: { type: string }) => {
   console.log(user);
 
   return (
-    <section className="rounded-2xl bg-darkGrey p-4 md:p-8">
+    <section className="rounded-2xl bg-elementBackgroundColor p-8">
       <header className="flex flex-col gap-5 md:gap-8">
-        <Link href="/" className=" flex cursor-pointer items-center gap-1">
+        <Link href="/" className=" flex cursor-pointer items-center gap-5">
           <Image
             src="/icons/logo.svg"
             width={50}
             height={50}
             alt="Horizon logo"
           />
-          <h1 className="text-black-1 ml-2 text-2xl">FundFlow</h1>
+          <h1 className="font-mono text-2xl lg:block">
+            Fund<span className="text-AccentLimeColor">Flow</span>
+          </h1>
         </Link>
 
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-2xl font-semibold ">
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
-            <p className="pb-5 pt-1 text-base font-normal ">
+            <p className="pb-5 pt-1 text-base font-normal text-grayColor">
               {user
                 ? "Link your account to get started"
                 : "Please enter your details"}
@@ -203,10 +205,10 @@ export const AuthForm = ({ type }: { type: string }) => {
                   />
                   <button
                     type="submit"
-                    className="mt-8 w-full rounded-lg bg-blue-600 py-[10px] font-semibold text-white duration-300 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="mt-4 rounded-md bg-AccentLimeColor py-3 text-lg font-semibold text-textBlackColor duration-300 hover:bg-AccentLimeColor/80 disabled:cursor-not-allowed disabled:opacity-50"
                     disabled={isLoading}
                   >
-                    {isLoading ? <div>Loading...</div> : "Sign Up"}
+                    {isLoading ? <div>Loading...</div> : "Sign In"}
                   </button>
                 </div>
               </div>
@@ -231,7 +233,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                 />
                 <button
                   type="submit"
-                  className="mt-4 rounded-lg bg-blue-600 py-3 font-semibold text-white duration-300 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-4 rounded-md bg-AccentLimeColor py-3 text-lg font-semibold text-textBlackColor duration-300 hover:bg-AccentLimeColor/80 disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={isLoading}
                 >
                   {isLoading ? <div>Loading...</div> : "Sign In"}
@@ -240,14 +242,14 @@ export const AuthForm = ({ type }: { type: string }) => {
             )}
           </form>
           <footer className="mt-10 flex items-center justify-center">
-            <p className="text-sm text-textGrey">
+            <p className="text-textGrey text-sm">
               {type === "sign-in"
                 ? "Don't have an account?"
                 : "Already have an account"}
             </p>
             <Link
               href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-              className="ml-2 text-blue-600 duration-300 hover:text-blue-500"
+              className="ml-2 text-AccentLimeColor duration-300 hover:text-AccentLimeColor/70"
             >
               {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>

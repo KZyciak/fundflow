@@ -1,12 +1,9 @@
-import { AuthForm } from "@/components/Auth/AuthForm";
-import { MaxWidthWrapper } from "@/components/HomePage/MaxWidthWrapper";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 const SignUp = async () => {
   return (
     <div className="">
-      <MaxWidthWrapper>
-        <AuthForm type="sign-up" />
-      </MaxWidthWrapper>
+      <AuthForm type="sign-up" />
     </div>
   );
 };

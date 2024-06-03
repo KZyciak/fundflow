@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-black text-textLight">
+    <html lang="en" className="bg-backgroundColor text-textWhiteColor">
       <body className={`${inter.variable} ${imbplexSerif.variable}`}>
         {children}
       </body>

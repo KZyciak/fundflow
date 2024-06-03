@@ -12,7 +12,7 @@ export const Button = ({ children, onClick, type, ...props }: ButtonProps) => {
       {...props}
       onClick={onClick}
       type={type}
-      className="mt-8 w-full rounded-lg bg-blue-600 py-[10px] font-semibold text-white duration-300 hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+      className="bg-AccentLimeColor text-textBlackColor hover:bg-AccentLimeColor/80 w-full rounded-lg px-3 py-2 font-semibold duration-300 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {children}
     </button>

@@ -33,25 +33,17 @@ export const FormInput = <T extends FieldValues>({
         control={control}
         render={({ field }) => (
           <div className="flex w-full flex-col">
-            <label
-              className={`mx-4 py-1 duration-300 ${
-                isActive ? "text-textLight" : "text-textGrey"
-              }`}
-            >
-              {label}
-            </label>
+            <label className="mb-2">{label}</label>
             <input
               type={type}
               placeholder={placeholder}
-              className="rounded-xl bg-highlightGrey px-4 py-[10px] ring-1 ring-transparent transition-colors duration-300 ease-in-out placeholder:text-lightGrey hover:bg-grey focus:bg-grey focus:outline-none focus:ring-blue-600"
+              className="rounded-md border-[1px] border-lightBorderColor bg-activeElementBackgroundColor px-3 py-2 placeholder:text-grayColor focus:border-AccentLimeColor focus:outline-none"
               {...field}
               onFocus={() => setIsActive(true)}
               onBlur={() => setIsActive(false)}
             />
             {error && (
-              <p className="mx-4 mt-1 text-[13px] text-lightRed">
-                {error.message}
-              </p>
+              <p className="mt-1 text-[13px] text-red-600">{error.message}</p>
             )}
           </div>
         )}

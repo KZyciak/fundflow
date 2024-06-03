@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html {
+  color: #f6f6f6;
+}
 
 * {
   margin: 0;
@@ -12,9 +15,14 @@
   background: rgb(18, 18, 18);
   background: linear-gradient(
     22deg,
-    rgba(18, 18, 18, 0.9038209033613446) 0%,
-    rgba(63, 136, 197, 1) 100%
+    rgba(28, 28, 28) 20%,
+    rgb(182, 255, 27) 100%
   );
+}
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
 }
 
 @layer components {
@@ -29,17 +37,11 @@
   .bank-card_icon {
     @apply flex size-full flex-1 flex-col items-end justify-between rounded-r-[20px] bg-gradient-to-r from-blue-500 to-blue-600 bg-cover bg-center bg-no-repeat py-5 pr-5;
   }
-  .loader {
-    border-top-color: #3498db;
-    animation: spin 1.5s linear infinite;
+  .category-badge {
+    @apply flex-center w-fit gap-1 truncate rounded-2xl border-[1.5px] py-[2px] pl-1.5 pr-2;
   }
-}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+  .banktab-item {
+    @apply flex gap-[18px] border-b-2 px-2 py-2 transition-all sm:px-4;
   }
 }

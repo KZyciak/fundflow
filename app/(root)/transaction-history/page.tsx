@@ -1,6 +1,6 @@
-import { HeaderBox } from "@/components/HomePage/HeaderBox";
-import { RecentTransactions } from "@/components/HomePage/RecentTransactions";
+import { HeaderBox } from "@/components/home-page/HeaderBox";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
+import { RecentTransactions } from "@/components/transactions/RecentTransactions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const TransactionHistory = async ({
@@ -19,25 +19,21 @@ const TransactionHistory = async ({
 
   const account = await getAccount({ appwriteItemId });
   return (
-    <div>
-      <div>
+    <section className="bg-elementBackgroundColor border-borderColor m-6 rounded-lg border-[1px] p-6 md:m-8">
+      <div className="pb-6">
         <HeaderBox
           title="Transaction History"
           subtext="See your bank details and transactions."
         />
       </div>
 
-      <div>
-        <h2>{accountsData[0].name}</h2>
-        <p>{accountsData[0].officialName}</p>
-      </div>
       <RecentTransactions
         accounts={accountsData}
         transactions={account?.transactions}
         appwriteItemId={appwriteItemId}
         page={currentPage}
       />
-    </div>
+    </section>
   );
 };
 

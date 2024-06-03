@@ -2,13 +2,40 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { sidebarLinks } from "@/constants";
-import { MenuButton } from "./button/MenuButton";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AiFillHome, AiFillDollarCircle } from "react-icons/ai";
+import { FaClipboardList } from "react-icons/fa";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+
 import { Footer } from "./Footer";
+import { cn } from "@/lib/utils";
+import { MenuButton } from "./hamburger-icon/MenuButton";
+import { PlaidLink } from "../plaid/PlaidLink";
+
+const sidebarLinks = [
+  {
+    Icon: AiFillHome,
+    route: "/",
+    label: "Home",
+  },
+  {
+    Icon: AiFillDollarCircle,
+    route: "/my-banks",
+    label: "My Banks",
+  },
+  {
+    Icon: FaClipboardList,
+    route: "/transaction-history",
+    label: "Transaction History",
+  },
+  {
+    Icon: FaMoneyBillTransfer,
+    route: "/payment-transfer",
+    label: "Transfer Funds",
+  },
+];
 
 export const MobileNav = ({ user }: MobileNavProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -39,31 +66,30 @@ export const MobileNav = ({ user }: MobileNavProps) => {
   };
 
   return (
-    <section className="absolute right-0 top-0 z-40 h-screen w-full">
+    <section className="">
       <MenuButton isActive={isActive} setIsActive={toggleMenu} />
-      {isActive && (
-        <div
-          onClick={toggleMenu}
-          className="fixed z-30 size-full bg-black/50"
-        ></div>
-      )}
+
       <AnimatePresence mode="wait">
         {isActive && (
           <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMenu}
+              className="absolute left-0 top-0 z-30 h-screen w-full bg-backgroundColor/80"
+            ></motion.div>
             <motion.div
               variants={variants}
               initial="initial"
               animate="enter"
               exit="exit"
-              className="absolute right-0 top-0 z-40 h-screen w-[55%] bg-black p-4"
+              className="absolute right-0 top-0 z-40 flex h-screen w-[250px] flex-col justify-between border-l-[1px] border-borderColor bg-elementBackgroundColor p-4"
             >
-              <nav className="flex flex-col items-center gap-2">
-                <Link
-                  href="/"
-                  className="mx-auto mb-12 mt-2 flex cursor-pointer items-center gap-4"
-                >
-                  <h1 className="text-lg">FundFlow</h1>
-                </Link>
+              <nav className="mt-28 flex flex-col gap-2">
+                <h1 className="px-3 pb-4 text-[17px] font-semibold">
+                  Navigation
+                </h1>
                 {sidebarLinks.map((item) => {
                   const isActive =
                     pathname === item.route ||
@@ -72,29 +98,27 @@ export const MobileNav = ({ user }: MobileNavProps) => {
                     <Link
                       key={item.label}
                       href={item.route}
+                      onClick={toggleMenu}
                       className={cn(
-                        "flex w-full cursor-pointer rounded-lg p-3 hover:bg-highlightGrey",
+                        "flex rounded-md border-[1px] border-elementBackgroundColor px-3 py-2 text-grayColor duration-300 hover:text-textWhiteColor",
                         {
-                          "bg-blue-600 font-semibold hover:bg-blue-500":
+                          "border-lightBorderColor bg-activeElementBackgroundColor text-textWhiteColor":
                             isActive,
                         },
                       )}
                     >
                       <div className="flex items-center justify-center gap-2">
-                        <Image
-                          src={item.imgURL}
-                          alt={item.label}
-                          width={24}
-                          height={24}
-                          className="brightness-[3] invert-0"
-                        />
+                        <item.Icon />
                         <p>{item.label}</p>
                       </div>
                     </Link>
                   );
                 })}
               </nav>
-              <Footer user={user} type="mobile" />
+              <div className="flex flex-col gap-6">
+                <PlaidLink user={user} />
+                <Footer user={user} type="mobile" />
+              </div>
             </motion.div>
           </div>
         )}

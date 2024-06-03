@@ -1,12 +1,9 @@
-import { AuthForm } from "@/components/Auth/AuthForm";
-import { MaxWidthWrapper } from "@/components/HomePage/MaxWidthWrapper";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 const SignIn = () => {
   return (
     <div>
-      <MaxWidthWrapper>
-        <AuthForm type="sign-in" />
-      </MaxWidthWrapper>
+      <AuthForm type="sign-in" />
     </div>
   );
 };

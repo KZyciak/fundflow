@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Button } from "../Button";
+import { Button } from "../ui/MyButton";
 import {
   PlaidLinkOnSuccess,
   PlaidLinkOptions,
@@ -50,13 +50,13 @@ export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         <Button onClick={() => open()} type="button" disabled={!ready}>
           Connect Bank Account
         </Button>
-      ) : variant === "ghost" ? (
+      ) : variant === "secondary" ? (
         <Button onClick={() => open()} type="button" disabled={!ready}>
-          Connect Bank Account
+          Add Bank Account
         </Button>
       ) : (
         <Button onClick={() => open()} type="button" disabled={!ready}>
-          Add another account
+          Add
         </Button>
       )}
     </div>

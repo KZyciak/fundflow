@@ -1,10 +1,9 @@
-import { HeaderBox } from "@/components/HomePage/HeaderBox";
-import { MaxWidthWrapper } from "@/components/HomePage/MaxWidthWrapper";
-import { TotalBalanceBox } from "@/components/HomePage/TotalBalanceBox";
-import { RightSidebar } from "@/components/Sidebars/RightSidebar";
+import { HeaderBox } from "@/components/home-page/HeaderBox";
+import { TotalBalanceBox } from "@/components/home-page/TotalBalanceBox";
+import { RightSidebar } from "@/components/sidebars/RightSidebar";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
-import { RecentTransactions } from "@/components/HomePage/RecentTransactions";
+import { RecentTransactions } from "@/components/transactions/RecentTransactions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
@@ -20,28 +19,31 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const account = await getAccount({ appwriteItemId });
 
   return (
-    <section className="flex h-screen">
-      <MaxWidthWrapper>
-        <HeaderBox
-          type="greeting"
-          title="Welcome"
-          user={loggedIn.firstName}
-          subtext="Access and manage your account and transactions efficiently."
-        />
-        <TotalBalanceBox
-          accounts={accountsData}
-          totalBanks={accounts?.totalBanks}
-          totalCurrentBalance={accounts?.totalCurrentBalance}
-        />
-        <div>
+    <section className="flex h-screen overflow-hidden">
+      <div className="mx-auto h-full w-full p-6 md:p-8">
+        <div className="bg-elementBackgroundColor border-borderColor flex flex-col gap-4 rounded-lg border-[1px] p-6">
+          <HeaderBox
+            type="greeting"
+            title="Welcome"
+            user={loggedIn.firstName}
+            subtext="Access and manage your account and transactions efficiently."
+          />
+          <TotalBalanceBox
+            accounts={accountsData}
+            totalBanks={accounts?.totalBanks}
+            totalCurrentBalance={accounts?.totalCurrentBalance}
+          />
+        </div>
+        <div className="bg-elementBackgroundColor border-borderColor mt-8 rounded-lg border-[1px] p-6">
           <RecentTransactions
+            variant="full"
             accounts={accountsData}
             transactions={account?.transactions}
             appwriteItemId={appwriteItemId}
             page={currentPage}
           />
         </div>
-      </MaxWidthWrapper>
+      </div>
       <RightSidebar
         user={loggedIn}
         transactions={accounts?.transactions}
