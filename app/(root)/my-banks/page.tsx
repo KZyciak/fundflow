@@ -9,7 +9,7 @@ const MyBanks = async () => {
   const accounts = await getAccounts({ userId: loggedIn.$id });
   return (
     <section className="size-full p-6 md:p-8">
-      <div className="bg-elementBackgroundColor border-borderColor rounded-lg border-[1px] p-6">
+      <div className="rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
         <div>
           <HeaderBox
             title="My Bank Accounts"
@@ -18,7 +18,7 @@ const MyBanks = async () => {
         </div>
 
         <div className="mt-5 space-y-7">
-          <h2 className="text-semibold text-AccentLimeColor text-lg">
+          <h2 className="text-semibold text-lg text-AccentLimeColor">
             Your cards
           </h2>
           <div className="flex flex-wrap gap-8">
