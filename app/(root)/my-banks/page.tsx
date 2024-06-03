@@ -10,7 +10,7 @@ const MyBanks = async () => {
   return (
     <section className="size-full p-6 md:p-8">
       <div className="rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
-        <div>
+        <div className="">
           <HeaderBox
             title="My Bank Accounts"
             subtext="Effortiessly manage your banking activites with ease"
