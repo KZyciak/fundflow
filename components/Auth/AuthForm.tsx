@@ -130,7 +130,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       name="firstName"
                       label="First Name"
                       type="text"
-                      placeholder="Enter your first name"
+                      placeholder="ex: John"
                       error={form.formState.errors.firstName}
                     />
                     <FormInput<InputFormSchema>
@@ -138,7 +138,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       name="lastName"
                       label="Last Name"
                       type="text"
-                      placeholder="Enter your first last name"
+                      placeholder="ex: Fucker"
                       error={form.formState.errors.lastName}
                     />
                   </div>
@@ -147,7 +147,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     name="address"
                     label="Address"
                     type="text"
-                    placeholder="Enter your address"
+                    placeholder="ex: Holy John Pablo II 21"
                     error={form.formState.errors.address}
                   />
                   <FormInput<InputFormSchema>
@@ -155,7 +155,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     name="city"
                     label="City"
                     type="text"
-                    placeholder="Enter your city"
+                    placeholder="ex: New York"
                     error={form.formState.errors.city}
                   />
                   <div className="flex gap-4">
@@ -164,7 +164,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       name="state"
                       label="State"
                       type="text"
-                      placeholder="Example: Dolnośląskie"
+                      placeholder="Example: NY"
                       error={form.formState.errors.state}
                     />
                     <FormInput<InputFormSchema>
@@ -184,7 +184,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       name="dateOfBirth"
                       label="Date of Birth"
                       type="text"
-                      placeholder="DD-MM-YYYY"
+                      placeholder="format: YYYY-MM-DD"
                       error={form.formState.errors.dateOfBirth}
                     />
                     <FormInput<InputFormSchema>
@@ -192,7 +192,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                       name="ssn"
                       label="SSN"
                       type="text"
-                      placeholder="Example: 1234"
+                      placeholder="ex: 1234"
                       error={form.formState.errors.ssn}
                     />
                   </div>
@@ -200,7 +200,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     control={form.control}
                     label="Email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="john.fucker@gmail.com"
                     name="email"
                     error={form.formState.errors.email}
                   />

@@ -231,7 +231,7 @@ export const AuthFormSchema = (type?: string) =>
     state:
       type === "sign-in"
         ? z.string().optional()
-        : z.string().min(2, { message: "State must be at least 2 characters" }),
+        : z.string().length(2, { message: "State must be 2 characters" }),
 
     postalCode:
       type === "sign-in"
