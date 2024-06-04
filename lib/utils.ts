@@ -231,7 +231,7 @@ export const AuthFormSchema = (type?: string) =>
     state:
       type === "sign-in"
         ? z.string().optional()
-        : z.string().max(2, { message: "State must be at least 2 characters" }),
+        : z.string().min(2, { message: "State must be at least 2 characters" }),
 
     postalCode:
       type === "sign-in"
@@ -259,20 +259,25 @@ export const AuthFormSchema = (type?: string) =>
             .max(4, { message: "SSN number must be equal 4 characters" }),
     //both
     email: z.string().email({ message: "Invalid e-mail address" }),
-    password: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters" })
-      .regex(passwordValidation, {
-        message:
-          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
-      }),
+    password:
+      type === "sign-in"
+        ? z.string().min(1, { message: "Password is required" })
+        : z
+            .string()
+            .min(8, { message: "Password must be at least 8 characters" })
+            .regex(passwordValidation, {
+              message:
+                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+            }),
   });
 
 export const PaymentTransferFormSchema = () =>
   z.object({
     email: z.string().email("Invalid email address"),
-    name: z.string().min(4, "Transfer note is too short"),
-    amount: z.string().min(4, "Amount is too short"),
+    name: z.string().min(4, "Transfer note has to be at least 4 characters"),
+    amount: z
+      .string()
+      .min(4, "Amount is too short, please enter a amount in 00.00 format"),
     senderBank: z.string().min(4, "Please select a valid bank account"),
     shareableId: z.string().min(8, "Please select a valid sharable Id"),
   });

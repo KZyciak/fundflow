@@ -11,11 +11,16 @@ import { AuthFormSchema } from "@/lib/utils";
 import { FormInput } from "@/components/Auth/FormInput";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import { PlaidLink } from "../Plaid/PlaidLink";
+import { ErrorDialog } from "../ErrorDialog";
+import { useDialog } from "@/lib/hooks/useDialog";
 
 export const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { onOpen } = useDialog();
 
   const formSchema = AuthFormSchema(type);
   type InputFormSchema = z.infer<typeof formSchema>;
@@ -67,16 +72,21 @@ export const AuthForm = ({ type }: { type: string }) => {
         }
       }
     } catch (error) {
-      console.error("Error", error);
+      onOpen();
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
   };
 
-  console.log(user);
-
   return (
     <section className="rounded-2xl bg-elementBackgroundColor p-8">
+      <ErrorDialog
+        title="Upss..."
+        description="Invalid credentials. Please check the email and password."
+        buttonText="Understood!"
+      />
+
       <header className="flex flex-col gap-5 md:gap-8">
         <Link href="/" className=" flex cursor-pointer items-center gap-5">
           <Image

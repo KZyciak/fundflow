@@ -33,7 +33,8 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 
     return parseStringify(user.documents[0]);
   } catch (error) {
-    console.log(error);
+    console.log("Error during logining in", error);
+    throw error;
   }
 };
 
@@ -53,7 +54,8 @@ export const signIn = async ({ email, password }: signInProps) => {
 
     return parseStringify(user);
   } catch (error) {
-    console.error("Error", error);
+    console.log("Error during signing up", error);
+    throw error;
   }
 };
 

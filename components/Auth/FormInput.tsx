@@ -37,7 +37,7 @@ export const FormInput = <T extends FieldValues>({
             <input
               type={type}
               placeholder={placeholder}
-              className="rounded-md border-[1px] border-lightBorderColor bg-activeElementBackgroundColor px-3 py-2 placeholder:text-grayColor focus:border-AccentLimeColor focus:outline-none"
+              className="rounded-md border-[1px] border-lightBorderColor bg-activeElementBackgroundColor px-3 py-2 transition-all duration-100 placeholder:text-grayColor focus:border-AccentLimeColor focus:outline-none"
               {...field}
               onFocus={() => setIsActive(true)}
               onBlur={() => setIsActive(false)}
