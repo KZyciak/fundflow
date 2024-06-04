@@ -12,7 +12,7 @@ import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { Footer } from "./Footer";
 import { cn } from "@/lib/utils";
 import { MenuButton } from "./hamburger-icon/MenuButton";
-import { PlaidLink } from "../plaid/PlaidLink";
+import { PlaidLink } from "../Plaid/PlaidLink";
 
 const sidebarLinks = [
   {

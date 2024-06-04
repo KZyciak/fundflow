@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import { Footer } from "./Footer";
-import { PlaidLink } from "../plaid/PlaidLink";
+import { PlaidLink } from "../Plaid/PlaidLink";
 
 import Logo from "@/public/icons/logo.svg";
 

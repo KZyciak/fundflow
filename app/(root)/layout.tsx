@@ -4,8 +4,8 @@ import Logo from "@/public/icons/logo.svg";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LeftSidebar } from "../../components/sidebars/LeftSidebar";
-import { MobileNav } from "../../components/sidebars/MobileNav";
+import { LeftSidebar } from "../../components/Sidebars/LeftSidebar";
+import { MobileNav } from "../../components/Sidebars/MobileNav";
 
 export default async function RootLayout({
   children,

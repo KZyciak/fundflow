@@ -1,5 +1,5 @@
-import { HeaderBox } from "@/components/homePage/HeaderBox";
-import { BankCard } from "../../../components/sidebars/BankCard";
+import { HeaderBox } from "@/components/Home-page/HeaderBox";
+import { BankCard } from "../../../components/Sidebars/BankCard";
 import { getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React from "react";

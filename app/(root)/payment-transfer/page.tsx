@@ -1,5 +1,5 @@
-import { HeaderBox } from "@/components/homePage/HeaderBox";
-import PaymentTransferForm from "@/components/transactions/PaymentTransferForm";
+import { HeaderBox } from "@/components/Home-page/HeaderBox";
+import PaymentTransferForm from "@/components/Transactions/PaymentTransferForm";
 import { getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 

@@ -1,6 +1,6 @@
-import { HeaderBox } from "@/components/homePage/HeaderBox";
+import { HeaderBox } from "@/components/Home-page/HeaderBox";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
-import { RecentTransactions } from "@/components/transactions/RecentTransactions";
+import { RecentTransactions } from "@/components/Transactions/RecentTransactions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const TransactionHistory = async ({

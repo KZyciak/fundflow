@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BankTabItem } from "../homePage/BankTabItem";
-import BankInfo from "../homePage/BankInfo";
+import { BankTabItem } from "../Home-page/BankTabItem";
+import BankInfo from "../Home-page/BankInfo";
 import { TransactionsTable } from "./TransactionsTable";
 
 export const RecentTransactions = ({

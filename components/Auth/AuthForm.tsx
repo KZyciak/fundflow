@@ -8,9 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { AuthFormSchema } from "@/lib/utils";
-import { FormInput } from "@/components/auth/FormInput";
+import { FormInput } from "@/components/Auth/FormInput";
 import { signIn, signUp } from "@/lib/actions/user.actions";
-import { PlaidLink } from "../plaid/PlaidLink";
+import { PlaidLink } from "../Plaid/PlaidLink";
 
 export const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();

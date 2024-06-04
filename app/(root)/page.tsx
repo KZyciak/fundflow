@@ -1,9 +1,9 @@
-import { HeaderBox } from "@/components/homePage/HeaderBox";
-import { TotalBalanceBox } from "@/components/homePage/TotalBalanceBox";
-import { RightSidebar } from "@/components/sidebars/RightSidebar";
+import { HeaderBox } from "@/components/Home-page/HeaderBox";
+import { TotalBalanceBox } from "@/components/Home-page/TotalBalanceBox";
+import { RightSidebar } from "@/components/Sidebars/RightSidebar";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
-import { RecentTransactions } from "@/components/transactions/RecentTransactions";
+import { RecentTransactions } from "@/components/Transactions/RecentTransactions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
