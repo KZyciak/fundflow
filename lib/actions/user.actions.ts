@@ -40,6 +40,7 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
+    console.log("Signing in");
     const { account } = await createAdminClient();
     const session = await account.createEmailPasswordSession(email, password);
 
@@ -108,8 +109,12 @@ export const signUp = async ({ ...userData }: SignUpParams) => {
     });
 
     return parseStringify(newUser);
-  } catch (error) {
-    console.error("Error", error);
+  } catch (error: any) {
+    console.error("Erro during creating user", error);
+    if (error.code === 409 && error.type === "user_already_exists") {
+      throw new Error("The provided email address is already registered");
+    }
+    throw error;
   }
 };
 

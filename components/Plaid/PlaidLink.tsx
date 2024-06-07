@@ -11,10 +11,14 @@ import {
   createLinkToken,
   exchangePublicToken,
 } from "@/lib/actions/user.actions";
+import { ErrorDialog } from "../ErrorDialog";
+import { useDialog } from "@/lib/hooks/useDialog";
 
 export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { onOpen, onClose } = useDialog();
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -27,14 +31,19 @@ export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
+      onOpen();
+      setIsLoading(true);
       await exchangePublicToken({
         publicToken: public_token,
         user,
       });
+
       router.push("/");
+      setIsLoading(false);
+      onClose();
     },
 
-    [router, user],
+    [onClose, onOpen, router, user],
   );
 
   const config: PlaidLinkOptions = {
@@ -46,17 +55,22 @@ export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   return (
     <div>
+      <ErrorDialog
+        title="Please wait"
+        description="We are adding your bank. Loading..."
+      />
+
       {variant === "primary" ? (
         <Button onClick={() => open()} type="button" disabled={!ready}>
-          Connect Bank Account
+          {isLoading ? "Loading..." : "Connect Bank Account"}
         </Button>
       ) : variant === "secondary" ? (
         <Button onClick={() => open()} type="button" disabled={!ready}>
-          Add Bank Account
+          {isLoading ? "Loading..." : "Add bank account"}
         </Button>
       ) : (
         <Button onClick={() => open()} type="button" disabled={!ready}>
-          Add
+          {isLoading ? "Loading..." : "Add"}
         </Button>
       )}
     </div>

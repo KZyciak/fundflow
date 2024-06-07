@@ -8,36 +8,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { AuthFormSchema } from "@/lib/utils";
-import { FormInput } from "@/components/Auth/FormInput";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import { PlaidLink } from "../Plaid/PlaidLink";
 import { ErrorDialog } from "../ErrorDialog";
 import { useDialog } from "@/lib/hooks/useDialog";
+import { CustomFormField } from "../CustomFormField";
+import { Form } from "../ui/form";
+import { Button } from "../ui/MyButton";
+import Logo from "../../public/icons/logo.svg";
 
 export const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { onOpen } = useDialog();
 
   const formSchema = AuthFormSchema(type);
-  type InputFormSchema = z.infer<typeof formSchema>;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
       firstName: "",
       lastName: "",
       address: "",
-      city: "",
-      state: "",
       postalCode: "",
+      email: "",
+      password: "",
       dateOfBirth: "",
       ssn: "",
+      state: "NY",
     },
   });
 
@@ -71,29 +72,33 @@ export const AuthForm = ({ type }: { type: string }) => {
           router.push("/");
         }
       }
-    } catch (error) {
+    } catch (error: any) {
+      setErrorMessage(error.message);
       onOpen();
-      setIsError(true);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className="rounded-2xl bg-elementBackgroundColor p-8">
+    <section className="mx-auto my-10 w-full min-w-[310px] rounded-2xl bg-elementBackgroundColor p-4 sm:min-w-[500px] md:p-8">
       <ErrorDialog
-        title="Upss..."
-        description="Invalid credentials. Please check the email and password."
+        title="Error"
+        description={
+          errorMessage ||
+          "An error occurred during the sign-up/sign-in process. Please try again."
+        }
         buttonText="Understood!"
       />
 
       <header className="flex flex-col gap-5 md:gap-8">
         <Link href="/" className=" flex cursor-pointer items-center gap-5">
           <Image
-            src="/icons/logo.svg"
+            src={Logo}
             width={50}
             height={50}
-            alt="Horizon logo"
+            priority
+            alt="FundFlow Logo"
           />
           <h1 className="font-mono text-2xl lg:block">
             Fund<span className="text-AccentLimeColor">Flow</span>
@@ -117,140 +122,116 @@ export const AuthForm = ({ type }: { type: string }) => {
         </div>
       ) : (
         <>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-4"
-          >
-            {type === "sign-up" ? (
-              <div className="gap-10 xl:flex">
-                <div className="flex flex-col gap-4">
-                  <div className="flex gap-5">
-                    <FormInput<InputFormSchema>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-4 lg:min-w-[700px]"
+            >
+              {type === "sign-up" && (
+                <div className="gap-10 md:flex">
+                  <div className="w-full">
+                    <CustomFormField
                       control={form.control}
                       name="firstName"
                       label="First Name"
-                      type="text"
-                      placeholder="ex: John"
-                      error={form.formState.errors.firstName}
+                      placeholder="John"
                     />
-                    <FormInput<InputFormSchema>
+                    <CustomFormField
                       control={form.control}
                       name="lastName"
                       label="Last Name"
-                      type="text"
-                      placeholder="ex: Fucker"
-                      error={form.formState.errors.lastName}
+                      placeholder="Doe"
                     />
-                  </div>
-                  <FormInput<InputFormSchema>
-                    control={form.control}
-                    name="address"
-                    label="Address"
-                    type="text"
-                    placeholder="ex: Holy John Pablo II 21"
-                    error={form.formState.errors.address}
-                  />
-                  <FormInput<InputFormSchema>
-                    control={form.control}
-                    name="city"
-                    label="City"
-                    type="text"
-                    placeholder="ex: New York"
-                    error={form.formState.errors.city}
-                  />
-                  <div className="flex gap-4">
-                    <FormInput<InputFormSchema>
+                    <CustomFormField
                       control={form.control}
-                      name="state"
-                      label="State"
-                      type="text"
-                      placeholder="Example: NY"
-                      error={form.formState.errors.state}
+                      name="address"
+                      label="Address"
+                      placeholder="Main St 123"
                     />
-                    <FormInput<InputFormSchema>
+                    <CustomFormField
+                      control={form.control}
+                      name="city"
+                      label="City"
+                      placeholder="New York"
+                    />
+                    <CustomFormField
                       control={form.control}
                       name="postalCode"
                       label="Postal Code"
-                      type="text"
-                      placeholder="Exmaple: 50528"
-                      error={form.formState.errors.postalCode}
+                      placeholder="10001"
                     />
+                    {/* hidden */}
+                    <div className="hidden">
+                      <CustomFormField
+                        control={form.control}
+                        name="state"
+                        label="State"
+                        placeholder="NY"
+                      />
+                    </div>
+                    {/* hidden */}
                   </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div className="flex gap-4">
-                    <FormInput<InputFormSchema>
+                  <div className="w-full">
+                    <CustomFormField
                       control={form.control}
                       name="dateOfBirth"
                       label="Date of Birth"
-                      type="text"
-                      placeholder="format: YYYY-MM-DD"
-                      error={form.formState.errors.dateOfBirth}
+                      placeholder="YYYY-MM-DD"
                     />
-                    <FormInput<InputFormSchema>
+                    <CustomFormField
                       control={form.control}
                       name="ssn"
                       label="SSN"
-                      type="text"
-                      placeholder="ex: 1234"
-                      error={form.formState.errors.ssn}
+                      placeholder="1234"
+                    />
+                    <CustomFormField
+                      control={form.control}
+                      name="email"
+                      label="E-mail"
+                      inputType="email"
+                      placeholder="Enter your e-mail"
+                    />
+                    <CustomFormField
+                      control={form.control}
+                      name="password"
+                      inputType="password"
+                      label="Password"
+                      placeholder="Enter your password"
                     />
                   </div>
-                  <FormInput<InputFormSchema>
-                    control={form.control}
-                    label="Email"
-                    type="email"
-                    placeholder="john.fucker@gmail.com"
-                    name="email"
-                    error={form.formState.errors.email}
-                  />
-
-                  <FormInput<InputFormSchema>
-                    control={form.control}
-                    label="Password"
-                    type="password"
-                    placeholder="Enter your password"
-                    name="password"
-                    error={form.formState.errors.password}
-                  />
-                  <button
-                    type="submit"
-                    className="mt-4 rounded-md bg-AccentLimeColor py-3 text-lg font-semibold text-textBlackColor duration-300 hover:bg-AccentLimeColor/80 disabled:cursor-not-allowed disabled:opacity-50"
-                    disabled={isLoading}
-                  >
-                    {isLoading ? <div>Loading...</div> : "Sign In"}
-                  </button>
                 </div>
-              </div>
-            ) : (
-              <div className="flex w-[500px] flex-col gap-4">
-                <FormInput<InputFormSchema>
-                  control={form.control}
-                  label="Email"
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  error={form.formState.errors.email}
-                />
+              )}
 
-                <FormInput<InputFormSchema>
-                  control={form.control}
-                  label="Password"
-                  type="password"
-                  placeholder="Enter your password"
-                  name="password"
-                  error={form.formState.errors.password}
-                />
-                <button
-                  type="submit"
-                  className="mt-4 rounded-md bg-AccentLimeColor py-3 text-lg font-semibold text-textBlackColor duration-300 hover:bg-AccentLimeColor/80 disabled:cursor-not-allowed disabled:opacity-50"
-                  disabled={isLoading}
-                >
-                  {isLoading ? <div>Loading...</div> : "Sign In"}
-                </button>
-              </div>
-            )}
-          </form>
+              {type === "sign-in" && (
+                <div>
+                  <CustomFormField
+                    control={form.control}
+                    name="email"
+                    label="E-mail"
+                    inputType="email"
+                    placeholder="Enter your e-mail"
+                  />
+                  <CustomFormField
+                    control={form.control}
+                    name="password"
+                    label="Password"
+                    inputType="password"
+                    placeholder="Enter your password"
+                  />
+                </div>
+              )}
+
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <div>Loading...</div>
+                ) : type === "sign-in" ? (
+                  "Sign In"
+                ) : (
+                  "Sign Up"
+                )}
+              </Button>
+            </form>
+          </Form>
           <footer className="mt-10 flex items-center justify-center">
             <p className="text-textGrey text-sm">
               {type === "sign-in"
@@ -259,7 +240,7 @@ export const AuthForm = ({ type }: { type: string }) => {
             </p>
             <Link
               href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-              className="ml-2 text-AccentLimeColor duration-300 hover:text-AccentLimeColor/70"
+              className="ml-2 text-AccentLimeColor hover:underline"
             >
               {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>

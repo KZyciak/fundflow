@@ -231,23 +231,28 @@ export const AuthFormSchema = (type?: string) =>
     state:
       type === "sign-in"
         ? z.string().optional()
-        : z.string().length(2, { message: "State must be 2 characters" }),
+        : z.string().min(2, { message: "State must be at least 2 characters" }),
 
     postalCode:
       type === "sign-in"
         ? z.string().optional()
         : z
             .string()
+            .regex(/^\d{5}$/, "Invalid postal code format, should be XXXXX")
             .min(5, { message: "Postal Code must be at least 5 characters" })
             .max(6, {
               message:
-                "Postal code must be at most 6 characters of format XX-XXX",
+                "Postal code must be at most 6 characters of format XXXXX",
             }),
     dateOfBirth:
       type === "sign-in"
         ? z.string().optional()
         : z
             .string()
+            .regex(
+              /^\d{4}-\d{2}-\d{2}$/,
+              "Invalid date format, should be YYYY-MM-DD",
+            )
             .min(8, { message: "Date must be at least 8 characters" })
             .max(10, { message: "Date must be at most 10 characters" }),
     ssn:
@@ -257,7 +262,6 @@ export const AuthFormSchema = (type?: string) =>
             .string()
             .min(4, { message: "SSN number must be equal 4 characters" })
             .max(4, { message: "SSN number must be equal 4 characters" }),
-    //both
     email: z.string().email({ message: "Invalid e-mail address" }),
     password:
       type === "sign-in"

@@ -1,7 +1,6 @@
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -13,7 +12,7 @@ import { useDialog } from "@/lib/hooks/useDialog";
 interface ErrorDialogProps {
   title: string;
   description: string;
-  buttonText: string;
+  buttonText?: string;
 }
 
 export const ErrorDialog = ({
@@ -33,9 +32,11 @@ export const ErrorDialog = ({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction className="rounded-md border-[1px] border-lightBorderColor bg-activeElementBackgroundColor duration-300 hover:bg-lightBorderColor">
-            {buttonText}
-          </AlertDialogAction>
+          {buttonText && (
+            <AlertDialogAction className="rounded-md border-[1px] border-lightBorderColor bg-activeElementBackgroundColor duration-300 hover:bg-lightBorderColor">
+              {buttonText}
+            </AlertDialogAction>
+          )}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
