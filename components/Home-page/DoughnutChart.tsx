@@ -15,8 +15,8 @@ export const DoughnutChart = ({ accounts }: DoughnutChartProps) => {
         data: balances,
         backgroundColor: [
           "#B6FF1B",
-          "#1B29FF",
-          "#1BFFB6",
+          "#7925CD",
+          "#274CD7",
           "#FF1BB6",
           "#7F1BFF",
         ],

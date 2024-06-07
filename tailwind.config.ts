@@ -14,6 +14,7 @@ module.exports = {
         textWhiteColor: "#F6F6F6",
         textBlackColor: "#161616",
         AccentLimeColor: "#B6FF1B",
+        AccentPurpleColor: "#8B1BFF",
       },
       fontFamily: {
         inter: "var(--font-inter)",

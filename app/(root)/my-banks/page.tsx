@@ -21,7 +21,7 @@ const MyBanks = async () => {
           <h2 className="text-semibold text-lg text-AccentLimeColor">
             Your cards
           </h2>
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:justify-normal">
             {accounts &&
               accounts.data.map((a: Account) => (
                 <BankCard

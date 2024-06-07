@@ -5,9 +5,9 @@ import {
   FormDescription,
   FormControl,
   FormMessage,
-} from "./ui/form";
-import { Textarea } from "./ui/textarea";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Textarea } from "../ui/textarea";
+import { Input } from "../ui/input";
 import { AuthFormSchema } from "@/lib/utils";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";

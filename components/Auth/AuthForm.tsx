@@ -10,12 +10,13 @@ import { useForm } from "react-hook-form";
 import { AuthFormSchema } from "@/lib/utils";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import { PlaidLink } from "../Plaid/PlaidLink";
-import { ErrorDialog } from "../ErrorDialog";
+import { ErrorDialog } from "../ui/ErrorDialog";
 import { useDialog } from "@/lib/hooks/useDialog";
-import { CustomFormField } from "../CustomFormField";
+import { CustomFormField } from "./CustomFormField";
 import { Form } from "../ui/form";
 import { Button } from "../ui/MyButton";
 import Logo from "../../public/icons/logo.svg";
+import { error } from "console";
 
 export const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -81,7 +82,7 @@ export const AuthForm = ({ type }: { type: string }) => {
   };
 
   return (
-    <section className="mx-auto my-10 w-full min-w-[310px] rounded-2xl bg-elementBackgroundColor p-4 sm:min-w-[500px] md:p-8">
+    <section className="mx-auto my-10 w-full min-w-[310px] rounded-2xl bg-elementBackgroundColor p-4 shadow-2xl sm:min-w-[500px] md:min-w-[700px] md:p-8">
       <ErrorDialog
         title="Error"
         description={
@@ -129,7 +130,7 @@ export const AuthForm = ({ type }: { type: string }) => {
             >
               {type === "sign-up" && (
                 <div className="gap-10 md:flex">
-                  <div className="w-full">
+                  <div className="flex w-full flex-col">
                     <CustomFormField
                       control={form.control}
                       name="firstName"
@@ -171,7 +172,7 @@ export const AuthForm = ({ type }: { type: string }) => {
                     </div>
                     {/* hidden */}
                   </div>
-                  <div className="w-full">
+                  <div className="flex w-full flex-col">
                     <CustomFormField
                       control={form.control}
                       name="dateOfBirth"

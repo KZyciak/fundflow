@@ -67,9 +67,9 @@ export const formatDateTime = (dateString: Date) => {
 };
 
 export function formatAmount(amount: number): string {
-  const formatter = new Intl.NumberFormat("pl-PL", {
+  const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "PLN",
+    currency: "USD",
     minimumFractionDigits: 2,
   });
 
@@ -205,29 +205,25 @@ export const AuthFormSchema = (type?: string) =>
     firstName:
       type === "sign-in"
         ? z.string().optional()
-        : z
-            .string()
-            .min(2, { message: "First name must be at least 2 characters" }),
+        : z.string().min(2, { message: "Must be at least 2 characters" }),
     lastName:
       type === "sign-in"
         ? z.string().optional()
-        : z
-            .string()
-            .min(2, { message: "Last name must be at least 2 characters" }),
+        : z.string().min(2, { message: "Must be at least 2 characters" }),
     address:
       type === "sign-in"
         ? z.string().optional()
         : z
             .string()
-            .min(5, { message: "Address must be at least 5 characters" })
-            .max(50, { message: "Address must be at most 50 characters" }),
+            .min(5, { message: "Must be at least 5 characters" })
+            .max(50, { message: "Must be at most 50 characters" }),
     city:
       type === "sign-in"
         ? z.string().optional()
         : z
             .string()
-            .min(3, { message: "City must be at least 3 characters" })
-            .max(50, { message: "City must be at most 50 characters" }),
+            .min(3, { message: "Must be at least 3 characters" })
+            .max(50, { message: "Must be at most 50 characters" }),
     state:
       type === "sign-in"
         ? z.string().optional()
@@ -238,12 +234,9 @@ export const AuthFormSchema = (type?: string) =>
         ? z.string().optional()
         : z
             .string()
-            .regex(/^\d{5}$/, "Invalid postal code format, should be XXXXX")
-            .min(5, { message: "Postal Code must be at least 5 characters" })
-            .max(6, {
-              message:
-                "Postal code must be at most 6 characters of format XXXXX",
-            }),
+            .regex(/^\d{5}$/, "Invalid format, should be XXXXX")
+            .min(5, { message: "Must be at least 5 characters" })
+            .max(6),
     dateOfBirth:
       type === "sign-in"
         ? z.string().optional()
@@ -251,17 +244,14 @@ export const AuthFormSchema = (type?: string) =>
             .string()
             .regex(
               /^\d{4}-\d{2}-\d{2}$/,
-              "Invalid date format, should be YYYY-MM-DD",
+              "Invalid format, should be YYYY-MM-DD",
             )
             .min(8, { message: "Date must be at least 8 characters" })
             .max(10, { message: "Date must be at most 10 characters" }),
     ssn:
       type === "sign-in"
         ? z.string().optional()
-        : z
-            .string()
-            .min(4, { message: "SSN number must be equal 4 characters" })
-            .max(4, { message: "SSN number must be equal 4 characters" }),
+        : z.string().length(4, { message: "Must be equal 4 characters" }),
     email: z.string().email({ message: "Invalid e-mail address" }),
     password:
       type === "sign-in"

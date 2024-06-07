@@ -20,7 +20,7 @@ export const Button = ({
       onClick={onClick}
       type={type}
       className={cn(
-        "w-full rounded-lg bg-AccentLimeColor px-3 py-2 font-semibold text-textBlackColor duration-300 hover:bg-AccentLimeColor/80 disabled:cursor-not-allowed disabled:opacity-50",
+        "w-full rounded-lg bg-AccentLimeColor px-3 py-2 font-semibold text-textBlackColor duration-500 hover:bg-purple-700 hover:text-textWhiteColor disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
     >

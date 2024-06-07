@@ -12,7 +12,7 @@ export const RightSidebar = ({
 }: RightSidebarProps) => {
   return (
     <aside className="hidden w-[35%] flex-col border-l-[1px] border-borderColor bg-elementBackgroundColor 2xl:flex">
-      <div className="right-sidebar-gradient h-[120px] w-full"></div>
+      <div className="h-[120px] w-full bg-gradient-to-l from-purple-700 to-blue-700"></div>
       <div id="profile" className="relative flex px-5 max-xl:justify-center">
         <div className="absolute -top-8 flex size-14 items-center justify-center rounded-full border-4 border-lightBorderColor bg-activeElementBackgroundColor p-2">
           <span className="text-2xl font-bold text-AccentLimeColor">

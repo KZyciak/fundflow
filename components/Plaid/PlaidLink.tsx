@@ -11,7 +11,7 @@ import {
   createLinkToken,
   exchangePublicToken,
 } from "@/lib/actions/user.actions";
-import { ErrorDialog } from "../ErrorDialog";
+import { ErrorDialog } from "../ui/ErrorDialog";
 import { useDialog } from "@/lib/hooks/useDialog";
 
 export const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
