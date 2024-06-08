@@ -3,9 +3,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main className="flex-center w-full bg-gradient-to-r from-purple-700 to-blue-700 md:h-screen">
-      {children}
-    </main>
-  );
+  return <main className="flex-center min-h-screen">{children}</main>;
 }

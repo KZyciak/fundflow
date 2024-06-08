@@ -42,7 +42,7 @@ export const LeftSidebar = ({ user }: SiderbarProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="hidden flex-col justify-between border-r-[1px] border-borderColor bg-elementBackgroundColor p-4 text-sm lg:flex lg:w-[290px]">
+    <section className="fixed left-0 top-0 hidden h-screen flex-col justify-between border-r-[1px] border-borderColor bg-elementBackgroundColor p-4 text-sm lg:flex lg:w-[240px]">
       <nav className="flex size-full flex-col">
         <Link href="/" className="m-2 flex cursor-pointer items-center gap-2">
           <Image src={Logo} alt="Logo" width={35} height={35} />

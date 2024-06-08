@@ -28,7 +28,7 @@ import { Textarea } from "../ui/textarea";
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   name: z.string().min(4, "Transfer note is too short"),
-  amount: z.string().min(4, "Amount is too short"),
+  amount: z.string().min(4, "Enter the amount with two decimal places"),
   senderBank: z.string().min(4, "Please select a valid bank account"),
   shareableId: z.string().min(8, "Please select a valid sharable Id"),
 });
@@ -221,7 +221,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           )}
         />
 
-        <div className="mt-5 flex w-full justify-end">
+        <div className="flex w-full justify-end">
           <div className="w-44">
             <Button type="submit">
               {isLoading ? "Sending..." : "Transfer Funds"}

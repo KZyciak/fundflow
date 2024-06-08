@@ -18,9 +18,9 @@ export default async function RootLayout({
     redirect("/sign-in");
   }
   return (
-    <main className="flex h-screen w-full font-inter text-textWhiteColor">
+    <main className="min-h-sreen flex font-inter text-textWhiteColor">
       <LeftSidebar user={loggedIn} />
-      <div className="flex size-full flex-col">
+      <div className="flex w-full flex-col bg-backgroundColor lg:ml-[240px]">
         <div className="flex items-center justify-between p-8 lg:hidden">
           <Link href="/" className="flex items-center gap-5">
             <Image src={Logo} alt="Logo" width={40} height={40} />

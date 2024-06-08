@@ -44,11 +44,7 @@ export const RecentTransactions = ({
           </TabsList>
 
           {accounts.map((account: Account) => (
-            <TabsContent
-              key={account.id}
-              value={account.appwriteItemId}
-              className=""
-            >
+            <TabsContent key={account.id} value={account.appwriteItemId}>
               <BankInfo
                 account={account}
                 appwriteItemId={appwriteItemId}

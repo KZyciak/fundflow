@@ -20,7 +20,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
   return (
     <section className="flex h-screen overflow-hidden">
-      <div className="mx-auto h-full w-full p-6 md:p-8">
+      <div className="mx-auto h-full w-full p-2 md:p-8">
         <div className="flex flex-col gap-4 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
           <HeaderBox
             type="greeting"

@@ -8,7 +8,7 @@ const MyBanks = async () => {
   const loggedIn = await getLoggedInUser();
   const accounts = await getAccounts({ userId: loggedIn.$id });
   return (
-    <section className="size-full p-6 md:p-8">
+    <section className="min-h-screen p-6 md:p-8">
       <div className="rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6">
         <div className="">
           <HeaderBox

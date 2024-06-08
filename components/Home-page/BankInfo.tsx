@@ -30,17 +30,19 @@ const BankInfo = ({ account, appwriteItemId, type }: BankInfoProps) => {
 
   return (
     <div onClick={handleBankChange}>
-      <div className="border-AccentLimeColor/20 bg-AccentLimeColor/10 my-5 flex items-center gap-3 rounded-md border-[1px] p-4">
-        <MdAccountBalanceWallet className="text-AccentLimeColor text-3xl" />
+      <div className="my-5 flex items-center gap-3 rounded-md border-[1px] border-AccentLimeColor/20 bg-AccentLimeColor/10 p-4">
+        <MdAccountBalanceWallet className="text-3xl text-AccentLimeColor" />
         <div className="w-full">
-          <div className="flex w-full items-center justify-between">
-            <h2 className="text-AccentLimeColor text-[16px] font-bold">
+          <div className=" flex w-full items-center justify-between">
+            <h2 className="text-[16px] font-bold text-AccentLimeColor">
               {account.name}
             </h2>
-            <p className="text-AccentLimeColor/80">{account.officialName}</p>
+            <p className="text-end text-[13px] text-AccentLimeColor/80 md:text-base">
+              {account.officialName}
+            </p>
           </div>
 
-          <p className="text-AccentLimeColor/80 font-semibold">
+          <p className="font-semibold text-AccentLimeColor/80">
             {formatAmount(account.currentBalance)}
           </p>
         </div>

@@ -19,20 +19,22 @@ const TransactionHistory = async ({
 
   const account = await getAccount({ appwriteItemId });
   return (
-    <section className="m-6 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6 md:m-8">
-      <div className="pb-6">
-        <HeaderBox
-          title="Transaction History"
-          subtext="See your bank details and transactions."
+    <section className="min-h-screen">
+      <div className="m-6 rounded-lg border-[1px] border-borderColor bg-elementBackgroundColor p-6 md:m-8">
+        <div className="pb-6">
+          <HeaderBox
+            title="Transaction History"
+            subtext="See your bank details and transactions."
+          />
+        </div>
+
+        <RecentTransactions
+          accounts={accountsData}
+          transactions={account?.transactions}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
         />
       </div>
-
-      <RecentTransactions
-        accounts={accountsData}
-        transactions={account?.transactions}
-        appwriteItemId={appwriteItemId}
-        page={currentPage}
-      />
     </section>
   );
 };
