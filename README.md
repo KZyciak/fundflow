@@ -1,3 +1,12 @@
+Hi!
+To use webiste proprely enter valid data in form and connect a sandbox bank account. Choose the bank you want and login with these credentials:
+login: user_good
+password: pass_good
+Then choose Plaid Checking or Plaid Savings and that's all. You're ready to explore my little website.
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
